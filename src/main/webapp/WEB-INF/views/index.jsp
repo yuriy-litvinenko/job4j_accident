@@ -10,13 +10,19 @@
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">Username</th>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Text</th>
+        <th scope="col">Address</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${users}" var="user">
+    <c:forEach items="${accidents}" var="accident">
         <tr>
-            <td>${user}</td>
+            <td>${accident.getId()}</td>
+            <td>${accident.getName()}</td>
+            <td>${accident.getText()}</td>
+            <td>${accident.getAddress()}</td>
         </tr>
     </c:forEach>
     </tbody>
