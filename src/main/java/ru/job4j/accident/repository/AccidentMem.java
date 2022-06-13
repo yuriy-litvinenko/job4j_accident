@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class AccidentMem {
     private final ConcurrentHashMap<Integer, Accident> accidents = new ConcurrentHashMap<>();
-    private final AtomicInteger count = new AtomicInteger(5);
+    private final AtomicInteger count = new AtomicInteger(4);
 
     public AccidentMem() {
         accidents.put(1, new Accident(1, "Acc 1", "Text 1", "Address 1"));
@@ -35,5 +35,9 @@ public class AccidentMem {
 
     public Collection<Accident> getAll() {
         return accidents.values();
+    }
+
+    public Accident getById(int id) {
+        return accidents.get(id);
     }
 }
