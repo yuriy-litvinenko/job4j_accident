@@ -7,6 +7,17 @@
     <title>Accident list</title>
 </head>
 <body>
+<c:forEach items="${accidents}" var="accident">
+    <div>
+        <span>
+            <c:out value="${accident.name}"/>
+        </span>
+        <span>
+             <a href="<c:url value='/update?id=${accident.id}'/>">Изменить наименование</a>
+        </span>
+    </div>
+</c:forEach>
+<br>
 <a href="<c:url value='/create'/>">
     <input type="submit" value="Добавить инцидент"/>
 </a>
