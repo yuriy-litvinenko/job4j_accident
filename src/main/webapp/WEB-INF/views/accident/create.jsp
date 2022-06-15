@@ -13,11 +13,19 @@
         <tr>
             <input type="hidden" name="id" value="0">
             <td>Название:</td>
-            <td><input type='text' name='name'></td>
+            <td><input type='text' name='name' required></td>
             <td>Текст:</td>
-            <td><input type='text' name='text'></td>
+            <td><input type='text' name='text' required></td>
             <td>Адрес:</td>
-            <td><input type='text' name='address'></td>
+            <td><input type='text' name='address' required></td>
+            <td>Тип:</td>
+            <td>
+                <select name="type.id">
+                    <c:forEach var="type" items="${types}">
+                        <option value="${type.id}">${type.name}</option>
+                    </c:forEach>
+                </select>
+            </td>
         </tr>
     </table>
     <br>

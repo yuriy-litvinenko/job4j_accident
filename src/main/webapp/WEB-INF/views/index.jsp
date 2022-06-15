@@ -29,6 +29,7 @@
             <th scope="col">Наименование</th>
             <th scope="col">Описание</th>
             <th scope="col">Адрес</th>
+            <th scope="col">Тип инцидента</th>
             <th scope="col">Выбор</th>
         </tr>
         </thead>
@@ -39,6 +40,7 @@
                 <td>${accident.getName()}</td>
                 <td>${accident.getText()}</td>
                 <td>${accident.getAddress()}</td>
+                <td>${accident.getType().getName()}</td>
                 <td><input type="radio" name="id" value="${accident.getId()}" required></td>
             </tr>
         </c:forEach>

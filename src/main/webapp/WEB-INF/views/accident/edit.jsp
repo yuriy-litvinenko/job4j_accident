@@ -18,6 +18,22 @@
             <td><input type='text' name='text' value="${accident.getText()}"></td>
             <td>Адрес:</td>
             <td><input type='text' name='address' value="${accident.getAddress()}"></td>
+            <td>Тип:</td>
+            <td>
+                <c:set var="typeId" value="${accident.getType().getId()}"/>
+                <select name="type.id">
+                    <c:forEach var="type" items="${types}">
+                        <c:choose>
+                            <c:when test="${type.id == typeId}">
+                                <option selected value="${type.id}">${type.name}</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option value="${type.id}">${type.name}</option>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </select>
+            </td>
         </tr>
     </table>
     <br>
