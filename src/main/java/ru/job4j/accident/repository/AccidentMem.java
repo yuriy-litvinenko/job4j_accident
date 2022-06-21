@@ -3,23 +3,26 @@ package ru.job4j.accident.repository;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
+    private final AtomicInteger count = new AtomicInteger(4);
     private final ConcurrentHashMap<Integer, Accident> accidents = new ConcurrentHashMap<>();
     private final Map<Integer, AccidentType> accidentTypes = new HashMap<>();
-    private final AtomicInteger count = new AtomicInteger(4);
+    private final Map<Integer, Rule> rules = new HashMap<>();
 
     public AccidentMem() {
         accidentTypes.put(1, AccidentType.of(1, "Две машины"));
         accidentTypes.put(2, AccidentType.of(2, "Машина и человек"));
         accidentTypes.put(3, AccidentType.of(3, "Машина и велосипед"));
+        rules.put(1, Rule.of(1, "Статья. 1"));
+        rules.put(2, Rule.of(2, "Статья. 2"));
+        rules.put(3, Rule.of(3, "Статья. 3"));
         Accident accident = new Accident(1, "Acc 1", "Text 1", "Address 1");
         accident.setType(getTypeById(2));
         accidents.put(1, accident);
@@ -62,5 +65,13 @@ public class AccidentMem {
 
     public AccidentType getTypeById(int id) {
         return accidentTypes.get(id);
+    }
+
+    public Collection<Rule> getRules() {
+        return rules.values();
+    }
+
+    public Rule getRuleById(int id) {
+        return rules.get(id);
     }
 }

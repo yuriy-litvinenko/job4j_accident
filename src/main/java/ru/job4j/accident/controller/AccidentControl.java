@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.repository.AccidentMem;
 import ru.job4j.accident.service.AccidentService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class AccidentControl {
@@ -36,28 +39,40 @@ public class AccidentControl {
     public String create(Model model) {
         Collection<AccidentType> types = service.getAccidentsTypes();
         model.addAttribute("types", types);
+        Collection<Rule> rules = service.getRules();
+        model.addAttribute("rules", rules);
         return "accident/create";
     }
 
     @GetMapping("/edit")
     public String edit(@RequestParam("id") int id, Model model) {
         Accident accident = accidents.getById(id);
-        Collection<AccidentType> types = service.getAccidentsTypes();
-
         model.addAttribute("accident", accident);
+        Collection<AccidentType> types = service.getAccidentsTypes();
         model.addAttribute("types", types);
+        Collection<Rule> rules = service.getRules();
+        model.addAttribute("rules", rules);
         return "accident/edit";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Accident accident, @RequestParam("type.id") int typeId) {
+    public String save(@ModelAttribute Accident accident, @RequestParam("type.id") int typeId, HttpServletRequest req) {
+        String[] rIds = req.getParameterValues("rIds");
+        for (String rId : rIds) {
+            accident.addRule(accidents.getRuleById(Integer.parseInt(rId)));
+        }
         accident.setType(accidents.getTypeById(typeId));
         accidents.add(accident);
         return "redirect:/";
     }
 
     @PostMapping("/modify")
-    public String modify(@ModelAttribute Accident accident, @RequestParam("type.id") int typeId) {
+    public String modify(@ModelAttribute Accident accident, @RequestParam("type.id") int typeId,
+                         HttpServletRequest req) {
+        String[] rIds = req.getParameterValues("rIds");
+        for (String rId : rIds) {
+            accident.addRule(accidents.getRuleById(Integer.parseInt(rId)));
+        }
         accident.setType(accidents.getTypeById(typeId));
         accidents.edit(accident.getId(), accident);
         return "redirect:/";

@@ -10,14 +10,20 @@
 <form action="<c:url value='/save'/>" method='POST'>
     <br>
     <table>
+        <input type="hidden" name="id" value="0">
         <tr>
-            <input type="hidden" name="id" value="0">
             <td>Название:</td>
             <td><input type='text' name='name' required></td>
+        </tr>
+        <tr>
             <td>Текст:</td>
             <td><input type='text' name='text' required></td>
+        </tr>
+        <tr>
             <td>Адрес:</td>
             <td><input type='text' name='address' required></td>
+        </tr>
+        <tr>
             <td>Тип:</td>
             <td>
                 <select name="type.id">
@@ -27,8 +33,17 @@
                 </select>
             </td>
         </tr>
+        <tr>
+            <td>Статьи:</td>
+            <td>
+                <select name="rIds" multiple>
+                    <c:forEach var="rule" items="${rules}" >
+                        <option value="${rule.id}">${rule.name}</option>
+                    </c:forEach>
+                </select>
+            </td>
+        </tr>
     </table>
-    <br>
     <input name="submit" type="submit" value="Сохранить"/>
 </form>
 </body>
