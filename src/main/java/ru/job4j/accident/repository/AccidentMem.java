@@ -25,15 +25,24 @@ public class AccidentMem {
         rules.put(3, Rule.of(3, "Статья. 3"));
         Accident accident = new Accident(1, "Acc 1", "Text 1", "Address 1");
         accident.setType(getTypeById(2));
+        accident.addRule(getRuleById(1));
+        accident.addRule(getRuleById(2));
         accidents.put(1, accident);
         Accident accident2 = new Accident(2, "Acc 2", "Text 2", "Address 2");
         accident2.setType(getTypeById(3));
+        accident2.addRule(getRuleById(2));
+        accident2.addRule(getRuleById(3));
         accidents.put(2, accident2);
         Accident accident3 = new Accident(3, "Acc 3", "Text 3", "Address 3");
         accident3.setType(getTypeById(1));
+        accident3.addRule(getRuleById(1));
+        accident3.addRule(getRuleById(3));
         accidents.put(3, accident3);
         Accident accident4 = new Accident(4, "Acc 4", "Text 4", "Address 4");
         accident4.setType(getTypeById(2));
+        accident4.addRule(getRuleById(1));
+        accident4.addRule(getRuleById(2));
+        accident4.addRule(getRuleById(3));
         accidents.put(4, accident4);
     }
 
