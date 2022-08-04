@@ -42,6 +42,8 @@ public class AccidentControl {
     public String edit(@RequestParam("id") int id, Model model) {
         Accident accident = service.getById(id);
         model.addAttribute("accident", accident);
+        Collection<Rule> accRules = accident.getRules();
+        model.addAttribute("accRules", accRules);
         Collection<AccidentType> types = service.getAccidentsTypes();
         model.addAttribute("types", types);
         Collection<Rule> rules = service.getRules();

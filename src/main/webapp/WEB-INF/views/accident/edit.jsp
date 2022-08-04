@@ -45,7 +45,7 @@
         <tr>
             <td>Статьи:</td>
             <td>
-                <c:set var="accRules" value="${accident.getRules()}"/>
+                <c:set var="accRules" value="${accRules}"/>
                 <select name="rIds" multiple>
                     <c:forEach var="rule" items="${rules}">
                         <c:choose>

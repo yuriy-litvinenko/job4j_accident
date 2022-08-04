@@ -7,7 +7,7 @@
     <title>Accident list</title>
 </head>
 <body>
-<c:forEach items="${accidents}" var="accident">
+<%--<c:forEach items="${accidents}" var="accident">
     <div>
         <span>
             <c:out value="${accident.name}"/>
@@ -17,7 +17,7 @@
         </span>
     </div>
 </c:forEach>
-<br>
+<br>--%>
 <a href="<c:url value='/create'/>">
     <input type="submit" value="Добавить инцидент"/>
 </a>
