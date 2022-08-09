@@ -9,7 +9,6 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Repository
 public class AccidentMem {
     private final AtomicInteger count = new AtomicInteger(4);
     private final ConcurrentHashMap<Integer, Accident> accidents = new ConcurrentHashMap<>();

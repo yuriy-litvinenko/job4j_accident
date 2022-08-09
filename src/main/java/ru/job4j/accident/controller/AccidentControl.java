@@ -58,7 +58,7 @@ public class AccidentControl {
             accident.addRule(service.getRuleById(Integer.parseInt(rId)));
         }
         accident.setType(service.getTypeById(typeId));
-        service.add(accident);
+        service.update(accident);
         return "redirect:/";
     }
 
@@ -70,7 +70,7 @@ public class AccidentControl {
             accident.addRule(service.getRuleById(Integer.parseInt(rId)));
         }
         accident.setType(service.getTypeById(typeId));
-        service.edit(accident.getId(), accident);
+        service.update(accident);
         return "redirect:/";
     }
 
