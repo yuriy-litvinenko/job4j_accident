@@ -18,6 +18,9 @@
     </div>
 </c:forEach>
 <br>--%>
+<div>
+    Login as : ${user.username}
+</div>
 <a href="<c:url value='/create'/>">
     <input type="submit" value="Добавить инцидент"/>
 </a>
