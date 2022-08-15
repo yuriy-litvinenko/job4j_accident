@@ -19,6 +19,7 @@ public class LoginControl {
     @GetMapping("/login")
     public String loginPage(@RequestParam(value = "error", required = false) String error,
                             @RequestParam(value = "logout", required = false) String logout,
+                            @RequestParam(value = "errorUser", required = false) String errorUser,
                             Model model) {
         String errorMessage = null;
         if (error != null) {
@@ -26,6 +27,9 @@ public class LoginControl {
         }
         if (logout != null) {
             errorMessage = "You have been successfully logged out !!";
+        }
+        if (errorUser != null) {
+            errorMessage = "A user with this name already exists !!";
         }
         model.addAttribute("errorMessage", errorMessage);
         return "login";
